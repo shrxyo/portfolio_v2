@@ -7,7 +7,7 @@
   --color-sand:   #F2EBDD;
   --color-line:   #E5DCC9;
   --color-ink:    #211E1A;
-  --color-muted:  #7A7264;
+  --color-muted:  #5E5750;
   --color-accent: #D2643A;
   --color-amber:  #E2A23E;
 }
@@ -46,6 +46,58 @@ a {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* ── Background blobs ───────────────────────────────────────── */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.18;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle at 40% 40%, #E2A23E, #D2643A);
+  top: -140px;
+  right: -80px;
+  animation: blobDrift 20s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle at 60% 60%, #F2EBDD, #E5DCC9);
+  bottom: -60px;
+  left: 8%;
+  animation: blobDrift 26s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes blobDrift {
+  0%   { transform: translate(0px,   0px)   scale(1);    }
+  33%  { transform: translate(28px, -18px)  scale(1.04); }
+  66%  { transform: translate(-16px, 26px)  scale(0.97); }
+  100% { transform: translate(12px,  14px)  scale(1.02); }
+}
+
+/* ── Section heading standard ───────────────────────────────── */
+.section-heading {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.section-sub {
+  color: var(--color-muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* ── Reduced motion ─────────────────────────────────────────── */

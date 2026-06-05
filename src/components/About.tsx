@@ -17,21 +17,19 @@ export default function About() {
                 alt="Shreya Balakrishna"
                 loading="lazy"
                 decoding="async"
-                className="w-full max-w-[340px] mx-auto md:mx-0 aspect-[3/4] object-cover object-top rounded-2xl border border-line shadow-[4px_6px_24px_0_rgba(33,30,26,0.10)]"
+                className="w-full max-w-85 mx-auto md:mx-0 aspect-3/4 object-cover object-top rounded-2xl border border-line shadow-[4px_6px_24px_0_rgba(33,30,26,0.10)]"
               />
             </div>
 
             {/* Text */}
             <div className="flex flex-col gap-6 md:w-[60%]">
-              <h2 className="accent text-accent text-[15px] tracking-wide m-0">
-                about me
-              </h2>
+              <h2 className="section-heading">About Me</h2>
 
               <p className="text-ink text-[17px] leading-relaxed m-0">
                 I'm a computer science master's student at UMass Amherst, working at the intersection of large language models, reasoning, and information retrieval. My research has spanned gradient-free LLM training and latent chain-of-thought, redundancy in model generation, and retrieval-augmented systems.
               </p>
 
-              <p className="text-muted text-[17px] leading-relaxed m-0">
+              <p className="section-sub m-0">
                 Before UMass I earned my B.Tech in CS from VIT in India, and worked across healthcare data science, computer vision, and analytics. I like problems where careful research meets things that actually ship.
               </p>
 
