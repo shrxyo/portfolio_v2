@@ -4,22 +4,21 @@ import Reveal from './Reveal'
 const BASE = import.meta.env.BASE_URL
 
 const socialLinks = [
-  { label: 'GitHub',   href: 'https://github.com/shrxyo',                  icon: FiGithub   },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/shreya-balakrishna/', icon: FiLinkedin },
-  { label: 'Email',    href: 'mailto:shreyabalakrishna02@gmail.com',         icon: FiMail     },
+  { label: 'GitHub',   href: 'https://github.com/shrxyo',                  icon: FiGithub,   bg: '#24292e' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/shreya-balakrishna/', icon: FiLinkedin, bg: '#0A66C2' },
+  { label: 'Email',    href: 'mailto:shreyabalakrishna02@gmail.com',         icon: FiMail,     bg: '#D2643A' },
 ]
 
-const infoTags = [
-  'MS in Computer Science · UMass Amherst',
-  'Research Extern at Oracle',
-  'ML / AI Researcher & Engineer',
-  'Amherst, MA',
+const infoItems = [
+  { heading: 'Role',      value: 'ML / AI Researcher & Engineer' },
+  { heading: 'Education', value: 'MS in Computer Science · UMass Amherst' },
+  { heading: 'Currently', value: 'Research Extern at Oracle' },
+  { heading: 'Based in',  value: 'Amherst, MA' },
 ]
 
 export default function Hero() {
   return (
     <section id="home" className="relative bg-cream min-h-[92dvh] flex items-center overflow-hidden">
-      {/* Subtle animated background blobs */}
       <div className="blob blob-1" aria-hidden="true" />
       <div className="blob blob-2" aria-hidden="true" />
 
@@ -28,31 +27,35 @@ export default function Hero() {
           {/* Status badge */}
           <div className="inline-flex items-center gap-2 border border-line bg-sand/70 backdrop-blur-sm px-4 py-2 rounded-full mb-8">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <span className="text-ink text-[13px] tracking-wide">Open to full time roles starting June 2026</span>
+            <span className="text-ink text-[14px] tracking-wide">Open to full time roles starting June 2026</span>
           </div>
 
-          {/* Big name display */}
-          <h1 className="text-ink font-sans font-bold leading-[0.93] tracking-[-0.035em] mb-6"
-            style={{ fontSize: 'clamp(3.2rem, 10vw, 7.5rem)' }}>
+          {/* Name — largest element on the page */}
+          <h1
+            className="text-ink font-sans font-bold leading-[0.93] tracking-[-0.035em] mb-5"
+            style={{ fontSize: 'clamp(2.6rem, 7vw, 5rem)' }}
+          >
             Shreya<br />Balakrishna
           </h1>
 
-          {/* Tagline */}
-          <p className="text-muted leading-relaxed max-w-140 mb-8"
-            style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)' }}>
+          {/* Tagline — second biggest */}
+          <p
+            className="text-muted leading-relaxed max-w-140 mb-8 font-medium"
+            style={{ fontSize: 'clamp(1.1rem, 2.2vw, 1.4rem)' }}
+          >
             I build and study language models —{' '}
             reasoning, retrieval, and the systems that make them useful.
           </p>
 
-          {/* Info tags */}
-          <div className="flex flex-wrap gap-2 mb-10">
-            {infoTags.map(tag => (
-              <span
-                key={tag}
-                className="text-muted text-[12px] tracking-wide border border-line bg-sand/60 px-3 py-1.5 rounded-full"
-              >
-                {tag}
-              </span>
+          {/* Labeled info items */}
+          <div className="flex flex-col gap-2.5 mb-10">
+            {infoItems.map(item => (
+              <div key={item.heading} className="flex items-center gap-3">
+                <span className="text-accent text-[11px] font-bold uppercase tracking-widest w-24 shrink-0">
+                  {item.heading}
+                </span>
+                <span className="text-ink text-[14px] font-medium">{item.value}</span>
+              </div>
             ))}
           </div>
 
@@ -62,21 +65,24 @@ export default function Hero() {
               href={BASE + 'resume.pdf'}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-accent text-cream text-[13px] tracking-wide px-5 py-2.5 rounded-sm hover:bg-[#bc5630] transition-colors duration-150"
+              className="inline-flex items-center gap-2 bg-accent text-[14px] font-semibold tracking-wide px-6 py-3 rounded-sm hover:bg-[#bc5630] transition-colors duration-150"
+              style={{ color: '#ffffff' }}
             >
               Download Résumé
             </a>
 
-            {socialLinks.map(({ label, href, icon: Icon }) => (
+            {/* Social icon circles */}
+            {socialLinks.map(({ label, href, icon: Icon, bg }) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith('mailto') ? undefined : '_blank'}
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-muted text-[13px] tracking-wide border border-line px-4 py-2.5 rounded-sm hover:text-accent hover:border-accent transition-colors duration-150"
+                aria-label={label}
+                className="w-11 h-11 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-150"
+                style={{ backgroundColor: bg }}
               >
-                <Icon size={14} />
-                {label}
+                <Icon size={18} color="#ffffff" />
               </a>
             ))}
           </div>

@@ -9,7 +9,7 @@ const config: Config = {
         sand:  '#F2EBDD',
         line:  '#E5DCC9',
         ink:   '#211E1A',
-        muted: '#7A7264',
+        muted: '#4A4540',
         accent:'#D2643A',
         amber: '#E2A23E',
       },

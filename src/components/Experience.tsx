@@ -97,13 +97,13 @@ const filters: FilterType[] = ['All', 'Research', 'Industry']
 function TagPill({ type }: { type: RoleType }) {
   if (type === 'Research') {
     return (
-      <span className="bg-accent text-cream text-[11px] tracking-wide px-2.5 py-0.5 rounded-full shrink-0">
+      <span className="bg-accent text-[13px] font-medium tracking-wide px-3 py-0.5 rounded-full shrink-0" style={{ color: '#ffffff' }}>
         Research
       </span>
     )
   }
   return (
-    <span className="border border-line text-ink text-[11px] tracking-wide px-2.5 py-0.5 rounded-full shrink-0">
+    <span className="border border-line text-ink text-[13px] font-medium tracking-wide px-3 py-0.5 rounded-full shrink-0">
       Industry
     </span>
   )
@@ -111,7 +111,7 @@ function TagPill({ type }: { type: RoleType }) {
 
 export default function Experience() {
   const [filter,    setFilter]    = useState<FilterType>('All')
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   const visible = roles.filter(r => filter === 'All' || r.type === filter)
 
@@ -133,9 +133,9 @@ export default function Experience() {
                 <button
                   key={f}
                   type="button"
-                  onClick={() => { setFilter(f); setOpenIndex(null) }}
+                  onClick={() => { setFilter(f); setOpenIndex(0) }}
                   className={[
-                    'text-[13px] tracking-wide transition-colors duration-150 bg-transparent border-none p-0 cursor-pointer',
+                    'text-[14px] font-medium tracking-wide transition-colors duration-150 bg-transparent border-none p-0 cursor-pointer',
                     filter === f
                       ? 'text-accent underline underline-offset-4 decoration-accent'
                       : 'text-muted hover:text-ink',
@@ -148,8 +148,8 @@ export default function Experience() {
           </div>
         </Reveal>
 
-        {/* Role list */}
-        <div className="flex flex-col divide-y divide-line">
+        {/* Role cards */}
+        <div className="flex flex-col gap-4">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((role, i) => (
               <motion.div
@@ -159,12 +159,15 @@ export default function Experience() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.18, ease: 'easeOut' }}
+                className="bg-cream border border-line rounded-2xl overflow-hidden
+                           hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.09)]
+                           transition-all duration-200"
               >
                 {/* Accordion trigger */}
                 <button
                   type="button"
                   onClick={() => toggle(i)}
-                  className="w-full flex items-start gap-4 py-7 text-left group cursor-pointer bg-transparent border-none p-0"
+                  className="w-full flex items-start gap-4 p-6 text-left group cursor-pointer bg-transparent border-none"
                 >
                   {/* Company logo avatar */}
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-[15px] shrink-0 mt-0.5 ${role.logoColor}`}>
@@ -181,25 +184,25 @@ export default function Experience() {
                         <TagPill type={role.type} />
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
-                        <span className="text-muted text-[13px]">{role.period}</span>
+                        <span className="text-muted text-[14px] font-medium">{role.period}</span>
                         <FiChevronDown
-                          size={15}
+                          size={16}
                           className={`text-muted transition-transform duration-200 ${openIndex === i ? 'rotate-180' : ''}`}
                         />
                       </div>
                     </div>
 
                     {/* Company · location */}
-                    <p className="text-muted text-[14px] mb-3 leading-snug m-0">
+                    <p className="text-muted text-[14px] mb-3 leading-snug m-0 font-medium">
                       {role.company} · {role.location}
                     </p>
 
                     {/* Tech stack tags */}
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-2">
                       {role.techStack.map(tag => (
                         <span
                           key={tag}
-                          className="text-muted text-[11px] tracking-wide border border-line bg-cream px-2.5 py-0.5 rounded-full"
+                          className="text-muted text-[13px] tracking-wide border border-line bg-sand px-3 py-0.5 rounded-full"
                         >
                           {tag}
                         </span>
@@ -219,10 +222,10 @@ export default function Experience() {
                       transition={{ duration: 0.22, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <ul className="m-0 pb-7 pl-14 flex flex-col gap-2.5 list-none">
+                      <ul className="m-0 px-6 pb-6 pt-0 pl-20 flex flex-col gap-3 list-none border-t border-line">
                         {role.bullets.map((b, bi) => (
-                          <li key={bi} className="flex gap-3 text-muted text-[15px] leading-relaxed">
-                            <span className="text-accent shrink-0 mt-[4px] text-[10px]">◆</span>
+                          <li key={bi} className="flex gap-3 text-muted text-[15px] leading-relaxed pt-4 first:pt-4">
+                            <span className="text-accent shrink-0 mt-1.5 text-[10px]">◆</span>
                             <span>{b}</span>
                           </li>
                         ))}

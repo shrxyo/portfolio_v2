@@ -2,40 +2,33 @@ import Reveal from './Reveal'
 
 interface SkillCategory {
   label: string
-  icon:  string
   tags:  string[]
 }
 
 const categories: SkillCategory[] = [
   {
+    label: 'ML & AI',
+    tags:  [
+      'PyTorch', 'TensorFlow', 'vLLM', 'LoRA', 'HF Accelerate', 'HF Transformers',
+      'Supervised Fine-Tuning', 'Weaviate', 'ChromaDB', 'Vector Databases',
+      'LangChain', 'LangGraph', 'OpenAI API', 'RAG', 'RLHF', 'Reward Modeling',
+      'Weights & Biases',
+    ],
+  },
+  {
+    label: 'Data & Analytics',
+    tags:  ['NumPy', 'Pandas', 'Scikit-Learn', 'Matplotlib', 'SQL', 'BigQuery', 'ETL', 'PySpark'],
+  },
+  {
+    label: 'Frameworks & Tools',
+    tags:  [
+      'FastAPI', 'Flask', 'Django', 'React', 'Node.js', 'Docker',
+      'Git', 'MongoDB', 'WebSocket', 'REST', 'AWS', 'CI/CD', 'HPC', 'Slurm',
+    ],
+  },
+  {
     label: 'Languages',
-    icon:  '⌨',
-    tags:  ['Python', 'Go', 'Java', 'C++', 'SQL', 'Bash / Shell'],
-  },
-  {
-    label: 'Frameworks',
-    icon:  '🧩',
-    tags:  ['FastAPI', 'Django', 'Spring', 'gRPC', 'Pydantic', 'Gin'],
-  },
-  {
-    label: 'Cloud & Infra',
-    icon:  '☁',
-    tags:  ['Microsoft Azure', 'Docker', 'Kubernetes', 'Kafka', 'Terraform', 'Helm', 'ArgoCD', 'OpenShift', 'Prometheus', 'Grafana', 'Loki', 'CI/CD'],
-  },
-  {
-    label: 'APIs & Auth',
-    icon:  '🔐',
-    tags:  ['RESTful APIs', 'GraphQL', 'gRPC', 'OAuth 2.0', 'Keycloak', 'Azure APIM'],
-  },
-  {
-    label: 'Databases',
-    icon:  '🗄',
-    tags:  ['PostgreSQL', 'MongoDB Atlas', 'MySQL', 'Redis', 'pgvector'],
-  },
-  {
-    label: 'Paradigms',
-    icon:  '📐',
-    tags:  ['Microservices', 'CRDTs / OT', 'Event-driven', 'Distributed Systems', 'HPA scaling', 'WebSockets'],
+    tags:  ['Python', 'C++', 'JavaScript', 'TypeScript', 'Bash/Shell', 'R'],
   },
 ]
 
@@ -51,21 +44,18 @@ export default function Skills() {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {categories.map((cat, i) => (
             <Reveal key={cat.label} delay={i * 0.06}>
-              <div className="bg-sand border border-line rounded-2xl p-6 flex flex-col gap-4 h-full">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-cream border border-line flex items-center justify-center text-[18px] shrink-0">
-                    {cat.icon}
-                  </div>
-                  <span className="text-ink font-semibold text-[15px] tracking-wide">{cat.label}</span>
-                </div>
+              <div className="bg-sand border border-line rounded-2xl p-6 flex flex-col gap-4 h-full
+                              hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]
+                              transition-all duration-200">
+                <span className="text-ink font-bold text-[16px] tracking-wide">{cat.label}</span>
                 <div className="flex flex-wrap gap-2">
                   {cat.tags.map(tag => (
                     <span
                       key={tag}
-                      className="text-muted text-[12px] tracking-wide border border-line bg-cream px-2.5 py-1 rounded-full"
+                      className="text-muted text-[13px] tracking-wide border border-line bg-cream px-3 py-1 rounded-full"
                     >
                       {tag}
                     </span>

@@ -7,7 +7,7 @@
   --color-sand:   #F2EBDD;
   --color-line:   #E5DCC9;
   --color-ink:    #211E1A;
-  --color-muted:  #5E5750;
+  --color-muted:  #4A4540;
   --color-accent: #D2643A;
   --color-amber:  #E2A23E;
 }
@@ -95,7 +95,7 @@ a {
 
 .section-sub {
   color: var(--color-muted);
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   margin: 0;
 }
