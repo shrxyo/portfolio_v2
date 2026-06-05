@@ -1,14 +1,16 @@
 import Reveal from './Reveal'
 import Accent from './Accent'
 
-// To update: edit caption, swap the src path, or add/remove items from this array.
+const BASE = import.meta.env.BASE_URL
+
+// To update: edit caption, swap the src filename, or add/remove items.
 const photos = [
-  { src: '/hobbies/hobby-1.jpg', caption: 'Hiking'       },
-  { src: '/hobbies/hobby-2.jpg', caption: 'Photography'  },
-  { src: '/hobbies/hobby-3.jpg', caption: 'Cooking'      },
-  { src: '/hobbies/hobby-4.jpg', caption: 'Reading'       },
-  { src: '/hobbies/hobby-5.jpg', caption: 'Travel'        },
-  { src: '/hobbies/hobby-6.jpg', caption: 'Music'         },
+  { src: BASE + 'hobbies/hobby-1.jpg', caption: 'Hiking'      },
+  { src: BASE + 'hobbies/hobby-2.jpg', caption: 'Photography' },
+  { src: BASE + 'hobbies/hobby-3.jpg', caption: 'Cooking'     },
+  { src: BASE + 'hobbies/hobby-4.jpg', caption: 'Reading'     },
+  { src: BASE + 'hobbies/hobby-5.jpg', caption: 'Travel'      },
+  { src: BASE + 'hobbies/hobby-6.jpg', caption: 'Music'       },
 ]
 
 export default function Hobbies() {
@@ -17,7 +19,7 @@ export default function Hobbies() {
       <div className="max-w-content mx-auto px-6 md:px-10">
 
         <Reveal>
-          <h2 className="text-ink font-medium text-[clamp(1.4rem,3vw,2rem)] leading-snug tracking-[-0.01em] mb-12">
+          <h2 className="text-ink font-medium text-[clamp(1.25rem,3vw,2rem)] leading-snug tracking-[-0.01em] mb-12">
             what I do when I'm{' '}
             <Accent className="text-ink">not working</Accent>
           </h2>
@@ -31,6 +33,8 @@ export default function Hobbies() {
                   <img
                     src={photo.src}
                     alt={photo.caption}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full aspect-[4/3] object-cover transition-transform duration-200 ease-out hover:scale-[1.02]"
                   />
                 </div>

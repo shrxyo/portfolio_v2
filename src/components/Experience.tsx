@@ -147,7 +147,7 @@ export default function Experience() {
                 </div>
 
                 {/* Company · location */}
-                <p className="text-muted text-[14px] mb-4 m-0 leading-snug">
+                <p className="text-muted text-[14px] mb-3 leading-snug">
                   {role.company} · {role.location}
                 </p>
 
@@ -155,7 +155,7 @@ export default function Experience() {
                 <ul className="m-0 p-0 list-none flex flex-col gap-2">
                   {role.bullets.map((b, i) => (
                     <li key={i} className="flex gap-3 text-muted text-[15px] leading-relaxed">
-                      <span className="text-line shrink-0 mt-[3px]">–</span>
+                      <span className="text-muted shrink-0 mt-[3px]">–</span>
                       <span>{b}</span>
                     </li>
                   ))}

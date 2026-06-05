@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+const BASE = import.meta.env.BASE_URL
+
 const navLinks = [
   { label: 'About',      href: '#about'      },
   { label: 'Experience', href: '#experience'  },
@@ -9,8 +11,9 @@ const navLinks = [
 ]
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled,       setScrolled]       = useState(false)
+  const [menuOpen,       setMenuOpen]        = useState(false)
+  const [activeSection,  setActiveSection]   = useState('home')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -18,14 +21,36 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close menu on resize to desktop
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 768) setMenuOpen(false) }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
+  // Highlight nav link for the section currently in the middle of the viewport
+  useEffect(() => {
+    const sections = document.querySelectorAll<HTMLElement>('section[id]')
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        })
+      },
+      { rootMargin: '-45% 0px -55% 0px' },
+    )
+    sections.forEach(s => observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
+
   const closeMenu = () => setMenuOpen(false)
+
+  const linkClass = (href: string) =>
+    [
+      'text-[13px] tracking-wide underline-offset-4 transition-colors duration-[150ms]',
+      activeSection === href.slice(1)
+        ? 'text-accent underline decoration-accent'
+        : 'text-muted hover:text-accent hover:underline',
+    ].join(' ')
 
   return (
     <header
@@ -49,17 +74,12 @@ export default function Nav() {
         <ul className="hidden md:flex items-center gap-7 list-none m-0 p-0">
           {navLinks.map(({ label, href }) => (
             <li key={href}>
-              <a
-                href={href}
-                className="text-muted text-[13px] tracking-wide hover:text-accent underline-offset-4 hover:underline transition-colors duration-[150ms]"
-              >
-                {label}
-              </a>
+              <a href={href} className={linkClass(href)}>{label}</a>
             </li>
           ))}
           <li>
             <a
-              href="/resume.pdf"
+              href={BASE + 'resume.pdf'}
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent text-[13px] tracking-wide underline-offset-4 hover:underline transition-colors duration-[150ms]"
@@ -77,24 +97,9 @@ export default function Nav() {
           onClick={() => setMenuOpen(v => !v)}
           className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8 text-ink"
         >
-          <span
-            className={[
-              'block h-px bg-ink transition-all duration-200 origin-center',
-              menuOpen ? 'rotate-45 translate-y-[6px]' : 'w-5',
-            ].join(' ')}
-          />
-          <span
-            className={[
-              'block h-px bg-ink transition-all duration-200',
-              menuOpen ? 'opacity-0 w-5' : 'w-5',
-            ].join(' ')}
-          />
-          <span
-            className={[
-              'block h-px bg-ink transition-all duration-200 origin-center',
-              menuOpen ? '-rotate-45 -translate-y-[6px]' : 'w-5',
-            ].join(' ')}
-          />
+          <span className={['block h-px bg-ink transition-all duration-200 origin-center', menuOpen ? 'rotate-45 translate-y-[6px]' : 'w-5'].join(' ')} />
+          <span className={['block h-px bg-ink transition-all duration-200',               menuOpen ? 'opacity-0 w-5'               : 'w-5'].join(' ')} />
+          <span className={['block h-px bg-ink transition-all duration-200 origin-center', menuOpen ? '-rotate-45 -translate-y-[6px]' : 'w-5'].join(' ')} />
         </button>
       </nav>
 
@@ -105,13 +110,16 @@ export default function Nav() {
           menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0',
         ].join(' ')}
       >
-        <ul className="flex flex-col bg-cream border-t border-line px-6 py-4 gap-0 list-none m-0 p-0">
+        <ul className="flex flex-col bg-cream border-t border-line px-6 py-4 list-none m-0 p-0">
           {navLinks.map(({ label, href }) => (
             <li key={href}>
               <a
                 href={href}
                 onClick={closeMenu}
-                className="block text-muted text-[14px] py-3 border-b border-line hover:text-accent underline-offset-4 hover:underline transition-colors duration-[150ms]"
+                className={[
+                  'block text-[14px] py-3 border-b border-line transition-colors duration-[150ms]',
+                  activeSection === href.slice(1) ? 'text-accent' : 'text-muted hover:text-accent',
+                ].join(' ')}
               >
                 {label}
               </a>
@@ -119,7 +127,7 @@ export default function Nav() {
           ))}
           <li>
             <a
-              href="/resume.pdf"
+              href={BASE + 'resume.pdf'}
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}

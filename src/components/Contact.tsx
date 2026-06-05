@@ -1,10 +1,12 @@
 import { FiGithub, FiLinkedin, FiFileText } from 'react-icons/fi'
 import Reveal from './Reveal'
 
+const BASE = import.meta.env.BASE_URL
+
 const socialLinks = [
   { label: 'GitHub',   href: 'https://github.com/shrxyo',                    icon: FiGithub   },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/shreya-balakrishna/',   icon: FiLinkedin },
-  { label: 'Résumé',   href: '/resume.pdf',                                   icon: FiFileText },
+  { label: 'Résumé',   href: BASE + 'resume.pdf',                             icon: FiFileText },
 ]
 
 export default function Contact() {

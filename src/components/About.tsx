@@ -16,6 +16,8 @@ export default function About() {
               <img
                 src={aboutImg}
                 alt="Shreya Balakrishna"
+                loading="lazy"
+                decoding="async"
                 className="w-full max-w-[340px] mx-auto md:mx-0 aspect-[3/4] object-cover object-top rounded-2xl border border-line shadow-[4px_6px_24px_0_rgba(33,30,26,0.10)]"
               />
             </div>
