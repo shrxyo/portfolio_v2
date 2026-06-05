@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* ── Design tokens ──────────────────────────────────────────── */
+:root {
+  --color-cream:  #FBF8F1;
+  --color-sand:   #F2EBDD;
+  --color-line:   #E5DCC9;
+  --color-ink:    #211E1A;
+  --color-muted:  #7A7264;
+  --color-accent: #D2643A;
+  --color-amber:  #E2A23E;
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Accent serif utility ───────────────────────────────────── */
+.accent {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+}
+
+/* ── Links ──────────────────────────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+/* ── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
