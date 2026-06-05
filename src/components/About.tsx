@@ -1,5 +1,4 @@
 import aboutImg from '../assets/about.jpg'
-import Accent from './Accent'
 import Reveal from './Reveal'
 
 const focusAreas = ['LLM Training', 'Reasoning', 'Retrieval / RAG', 'Applied ML']
