@@ -32,9 +32,7 @@ jobs:
 
       - run: npm run build
         env:
-          # Set to /portfolio_v2/ for project pages (github.com/shrxyo/portfolio_v2).
-          # Change to / if you configure a custom domain (CNAME).
-          VITE_BASE: /portfolio_v2/
+          VITE_BASE: /
 
       - uses: actions/upload-pages-artifact@v3
         with:
