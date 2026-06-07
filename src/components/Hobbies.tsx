@@ -15,7 +15,7 @@ const photos = [
 
 export default function Hobbies() {
   return (
-    <section id="hobbies" className="bg-sand py-20 md:py-28">
+    <section id="hobbies" className="bg-cream border-t border-line py-20 md:py-28">
       <div className="max-w-content mx-auto px-6 md:px-10">
 
         <Reveal>

@@ -20,6 +20,10 @@ html {
 body {
   margin: 0;
   background-color: var(--color-cream);
+  background-image:
+    radial-gradient(circle, rgba(210, 100, 58, 0.18) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(210, 100, 58, 0.10) 1px, transparent 1px);
+  background-size: 40px 40px, 23px 29px;
   color: var(--color-ink);
   font-family: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
   font-size: 17px;
@@ -35,10 +39,12 @@ body {
 }
 
 /* ── Links ──────────────────────────────────────────────────── */
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 150ms ease;
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
 }
 
 /* ── Focus rings (keyboard navigation) ─────────────────────── */
@@ -48,39 +54,48 @@ a {
   border-radius: 2px;
 }
 
-/* ── Background blobs ───────────────────────────────────────── */
-.blob {
+/* ── Hero section background ────────────────────────────────── */
+
+/* Dot-grid base + cream, identical to body so the texture is continuous */
+.hero-bg-section {
+  background:
+    radial-gradient(circle, rgba(210, 100, 58, 0.18) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(210, 100, 58, 0.10) 1px, transparent 1px),
+    var(--color-cream);
+  background-size: 40px 40px, 23px 29px, auto;
+}
+
+/* Animated warm glow — more centered than a corner blob */
+.hero-bg-section::before {
+  content: '';
   position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.18;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
-  will-change: transform;
+  background:
+    radial-gradient(ellipse 85% 75% at 58% 5%,  rgba(226, 162, 62, 0.38) 0%, rgba(210, 100, 58, 0.20) 30%, transparent 58%),
+    radial-gradient(ellipse 45% 55% at 12% 72%, rgba(242, 235, 221, 0.55) 0%, transparent 54%);
+  animation: heroGlowPulse 18s ease-in-out infinite alternate;
 }
 
-.blob-1 {
-  width: 560px;
-  height: 560px;
-  background: radial-gradient(circle at 40% 40%, #E2A23E, #D2643A);
-  top: -140px;
-  right: -80px;
-  animation: blobDrift 20s ease-in-out infinite alternate;
+
+/* Fade warm glow into cream so the About section starts cleanly */
+.hero-bg-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, #FBF8F1);
 }
 
-.blob-2 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle at 60% 60%, #F2EBDD, #E5DCC9);
-  bottom: -60px;
-  left: 8%;
-  animation: blobDrift 26s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes blobDrift {
-  0%   { transform: translate(0px,   0px)   scale(1);    }
-  33%  { transform: translate(28px, -18px)  scale(1.04); }
-  66%  { transform: translate(-16px, 26px)  scale(0.97); }
-  100% { transform: translate(12px,  14px)  scale(1.02); }
+@keyframes heroGlowPulse {
+  0%   { transform: translate(0,     0)    scale(1);    opacity: 0.82; }
+  40%  { transform: translate(18px, -10px) scale(1.05); opacity: 1;    }
+  100% { transform: translate(-10px, 14px) scale(0.96); opacity: 0.88; }
 }
 
 /* ── Section heading standard ───────────────────────────────── */
@@ -98,6 +113,27 @@ a {
   font-size: 1.125rem;
   line-height: 1.6;
   margin: 0;
+}
+
+/* ── Contact section background ────────────────────────────── */
+.contact-section-bg {
+  background:
+    radial-gradient(circle, rgba(210, 100, 58, 0.18) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(210, 100, 58, 0.10) 1px, transparent 1px),
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(210, 100, 58, 0.13) 0%, rgba(226, 162, 62, 0.08) 40%, transparent 65%),
+    linear-gradient(to bottom, var(--color-cream) 0%, var(--color-cream) 38%, #EDE3CF 100%);
+  background-size: 40px 40px, 23px 29px, auto, auto;
+}
+
+/* ── Interest ticker marquee ──────────────────────────────── */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  animation: ticker-scroll 14s linear infinite;
+  will-change: transform;
 }
 
 /* ── Reduced motion ─────────────────────────────────────────── */

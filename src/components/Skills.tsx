@@ -34,7 +34,7 @@ const categories: SkillCategory[] = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative bg-cream py-20 md:py-28 overflow-hidden">
+    <section id="skills" className="py-14 md:py-20">
       <div className="max-w-content mx-auto px-6 md:px-10">
 
         <Reveal>
@@ -48,7 +48,8 @@ export default function Skills() {
           {categories.map((cat, i) => (
             <Reveal key={cat.label} delay={i * 0.06}>
               <div className="bg-sand border border-line rounded-2xl p-6 flex flex-col gap-4 h-full
-                              hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]
+                              shadow-[0_2px_4px_rgba(0,0,0,0.06),0_6px_18px_rgba(0,0,0,0.08)]
+                              hover:-translate-y-1 hover:shadow-[0_2px_8px_rgba(210,100,58,0.22),0_6px_16px_rgba(0,0,0,0.09)]
                               transition-all duration-200">
                 <span className="text-ink font-bold text-[16px] tracking-wide">{cat.label}</span>
                 <div className="flex flex-wrap gap-2">

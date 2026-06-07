@@ -4,9 +4,10 @@ const BASE = import.meta.env.BASE_URL
 
 const navLinks = [
   { label: 'About',      href: '#about'      },
+  { label: 'Skills',     href: '#skills'     },
   { label: 'Experience', href: '#experience'  },
   { label: 'Projects',   href: '#projects'    },
-  { label: 'Hobbies',    href: '#hobbies'     },
+  { label: 'Education',  href: '#education'   },
   { label: 'Contact',    href: '#contact'     },
 ]
 
@@ -46,10 +47,10 @@ export default function Nav() {
 
   const linkClass = (href: string) =>
     [
-      'text-[13px] tracking-wide underline-offset-4 transition-colors duration-[150ms]',
+      'text-[13px] tracking-wide transition-all duration-[150ms] rounded-full px-3 py-1',
       activeSection === href.slice(1)
-        ? 'text-accent underline decoration-accent'
-        : 'text-muted hover:text-accent hover:underline',
+        ? 'bg-accent text-white font-medium'
+        : 'text-muted hover:text-ink',
     ].join(' ')
 
   return (

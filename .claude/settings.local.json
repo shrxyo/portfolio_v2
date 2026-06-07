@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls /Users/shreyabalakrishna/Library/Caches/ms-playwright/chromium_headless_shell-*/chrome-mac/headless_shell 2>/dev/null | head -1)",
+      "Read(//Users/shreyabalakrishna/Library/Caches/ms-playwright/**)",
+      "Bash(/Users/shreyabalakrishna/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell --headless --screenshot=/tmp/pf-experience.png --window-size=1400,900 --virtual-time-budget=3000 'javascript:window.location='\\\\''http://localhost:5174/'\\\\'';setTimeout\\(\\(\\)=>{document.getElementById\\('\\\\''experience'\\\\''\\)?.scrollIntoView\\(\\)},2000\\)')",
+      "Bash(/Users/shreyabalakrishna/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell --headless --screenshot=/tmp/pf-nav.png --window-size=1400,900 --virtual-time-budget=2000 http://localhost:5174/)",
+      "Bash(wait)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5175/)",
+      "Bash(node -e ' *)",
+      "Bash(pkill -f \"vite --port 5175\")",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(npx playwright *)",
+      "Read(//Users/shreyabalakrishna/.cache/**)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(xxd)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/resume.pdf)",
+      "Bash(curl -sI http://localhost:5173/resume.pdf)",
+      "Bash(curl -s http://localhost:5173/resume.pdf)",
+      "Bash(curl -sI http://localhost:5173/favicon.svg)",
+      "Bash(curl -s http://localhost:5173/favicon.svg)",
+      "Bash(curl -s -H \"Accept: application/pdf\" http://localhost:5173/resume.pdf)",
+      "Bash(curl -sv -H \"Accept: application/pdf\" http://localhost:5173/resume.pdf)",
+      "Bash(curl -sv http://localhost:5173/resume.pdf)",
+      "Bash(node_modules/.bin/vite --version)",
+      "Bash(curl -s http://localhost:5173/resume.pdf -H \"Accept: text/html,application/xhtml+xml\")"
+    ]
+  }
+}
